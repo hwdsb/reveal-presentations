@@ -200,7 +200,7 @@ add_action( 'load-edit.php', function() {
  */
 add_filter( 'rest_dispatch_request', function( $retval, $request ) {
 	$json = $request->get_json_params();
-	if ( ! empty( $json['status'] ) && 'publish' === $json['status'] && ! empty( $json[ get( 'presentation_slug' ) . 's' ] ) ) {
+	if ( ! empty( $json['status'] ) && ! empty( $json[ get( 'presentation_slug' ) . 's' ] ) ) {
 		require_once return_path( 'includes/rest-pre-insert.php' );
 	}
 	return $retval;
