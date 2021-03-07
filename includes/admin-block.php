@@ -71,7 +71,7 @@ add_action( 'admin_enqueue_scripts', function() {
 			'wp-blocks',
 			'wp-edit-post',
 		),
-		'20200901'
+		'20210305'
 	);
 
 

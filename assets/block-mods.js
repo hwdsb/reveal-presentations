@@ -8,19 +8,29 @@ wp.domReady( function() {
 		changedTheme = '',
 		presThemes = [],
 		switchTheme,
-		slide = jQuery( '.wp-block-slide-slide__body'),
+		slide,
 		lock = false,
 		__ = wp.i18n.__;
 
+	/*
+	 * This sucks, but has to be done since we can't determine when Gutenberg
+	 * is fully loaded.
+	 */
+	let blockLoadedInterval = setInterval( function() {
+		slide = jQuery( '.wp-block-slide-slide__body' );
+	    if ( slide.length ) {
+			slide.addClass( 'reveal reveal-theme-' + currentTheme );
+
+			if ( 'rgba(0, 0, 0, 0)' === slide.css( 'backgroundColor' ) ) {
+				slide.addClass( 'reveal-background-image' );
+			};
+
+	        clearInterval( blockLoadedInterval );
+	    }
+	}, 500 );
+
 	// Remove Featured Image panel.
 	wp.data.dispatch('core/edit-post').removeEditorPanel('featured-image');
-
-	// Add the reveal.js theme.
-	slide.addClass( 'reveal reveal-theme-' + currentTheme );
-
-	if ( 'rgba(0, 0, 0, 0)' === slide.css( 'backgroundColor' ) ) {
-		slide.addClass( 'reveal-background-image' );
-	};
 
 	presThemes[currentTermId] = currentTheme;
 
