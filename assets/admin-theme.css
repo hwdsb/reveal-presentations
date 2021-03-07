@@ -1,0 +1,116 @@
+#editor .reveal-theme-black {
+	background-color: #191919;
+	color: #fff;
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+
+#editor .reveal-theme-night {
+	background-color: #111;
+	color: #eee;
+	font-family: "Open Sans", sans-serif;
+}
+
+#editor .reveal-theme-serif {
+	background-color: #F0F1EB;
+	color: #000;
+	font-family: "Palatino Linotype", "Book Antiqua", Palatino, FreeSerif, serif;
+}
+
+#editor .reveal-theme-simple {
+	background-color: #fff;
+	color: #000;
+	font-family: "Lato", sans-serif;
+}
+
+#editor .reveal-theme-solarized {
+	background-color: #fdf6e3;
+	color: #657b83;
+	font-family: "Lato", sans-serif;
+}
+
+#editor .reveal-theme-blood {
+	background-color: #222;
+	color: #eee;
+	font-family: Ubuntu, "sans-serif";
+}
+
+#editor .reveal-theme-moon {
+	background-color: #002b36;
+	color: #93a1a1;
+	font-family: "Lato", sans-serif;
+}
+
+#editor .reveal-theme-league {
+	color: #eee;
+	font-family: "Lato", sans-serif;
+}
+
+.reveal-background-image.reveal-theme-league {
+	background-image: -moz-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+	background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #555a5f), color-stop(100%, #1c1e20));
+	background-image: -webkit-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+	background-image: -o-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+	background-image: -ms-radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+	background-image: radial-gradient(center, circle cover, #555a5f 0%, #1c1e20 100%);
+}
+
+#editor .reveal-theme-beige {
+	color: #333;
+	font-family: "Lato", sans-serif;
+}
+
+.reveal-background-image.reveal-theme-beige {
+  background-image: -moz-radial-gradient(center, circle cover, white 0%, #f7f2d3 100%);
+  background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, white), color-stop(100%, #f7f2d3));
+  background-image: -webkit-radial-gradient(center, circle cover, white 0%, #f7f2d3 100%);
+  background-image: -o-radial-gradient(center, circle cover, white 0%, #f7f2d3 100%);
+  background-image: -ms-radial-gradient(center, circle cover, white 0%, #f7f2d3 100%);
+  background-image: radial-gradient(center, circle cover, white 0%, #f7f2d3 100%);
+}
+
+#editor .reveal-theme-sky {
+	color: #333;
+	font-family: "Open Sans", sans-serif;
+}
+
+.reveal-background-image.reveal-theme-sky {
+	background-image: -moz-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+	background-image: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #f7fbfc), color-stop(100%, #add9e4));
+	background-image: -webkit-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+	background-image: -o-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+	background-image: -ms-radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+	background-image: radial-gradient(center, circle cover, #f7fbfc 0%, #add9e4 100%);
+}
+
+.reveal h1 {
+	font-size: 2.5em;
+}
+
+.reveal h2 {
+	font-size: 2em;
+}
+
+.reveal h3 {
+	font-size: 1.5em;
+}
+
+.reveal h4 {
+	font-size: 1.25em;
+}
+
+.reveal h5 {
+	font-size: 1em;
+}
+
+.reveal h6 {
+	font-size: 0.8em;
+}
+
+.reveal h1,
+.reveal h2,
+.reveal h3,
+.reveal h4,
+.reveal h5,
+.reveal h6 {
+	line-height: 1;
+}
