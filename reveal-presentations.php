@@ -86,7 +86,7 @@ add_action( 'init', function() {
 		'hierarchical'       => true,
 		'menu_icon'          => 'dashicons-images-alt',
 		'menu_position'      => apply_filters( 'hwdsb_reveal_menu_position', 20 ),
-		'supports'           => [ 'title', 'editor', 'thumbnail', 'page-attributes', 'custom-fields', 'revisions', 'unpublish' ],
+		'supports'           => [ 'title', 'editor', 'author', 'thumbnail', 'page-attributes', 'custom-fields', 'revisions', 'unpublish' ],
 		'show_in_rest'       => true,
 	];
 	register_post_type( get( 'post_type_slug' ), $args );
