@@ -199,8 +199,8 @@ add_action( 'load-edit.php', function() {
  * REST API insert post mods.
  */
 add_filter( 'rest_dispatch_request', function( $retval, $request ) {
-	$json = $request->get_json_params();
-	if ( ! empty( $json['status'] ) && ! empty( $json[ get( 'presentation_slug' ) . 's' ] ) ) {
+	// Only load up our mods on our slides CPT endpoint.
+	if ( false !== strpos( $request->get_route(), '/' . get( 'post_type_slug' ) . '/' ) ) {
 		require_once return_path( 'includes/rest-pre-insert.php' );
 	}
 	return $retval;
