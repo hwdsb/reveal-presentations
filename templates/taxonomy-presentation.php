@@ -3,6 +3,7 @@ namespace HWDSB\Reveal\Frontend\Presentation;
 
 use HWDSB\Reveal\Frontend;
 
+add_filter( 'get_the_archive_title', 'strip_tags' );
 ?><!doctype html>
 <html <?php language_attributes(); ?>>
 <head>
