@@ -144,7 +144,8 @@ add_filter( 'allowed_block_types', function( $retval ) {
 		'core/heading',
 		'core/list',
 		'core/quote',
-		'core/code'
+		'core/code',
+		'core/media-text'
 	];
 } );
 
