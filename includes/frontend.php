@@ -97,22 +97,14 @@ add_filter( 'render_block', function( $retval, $block ) {
 		return $retval;
 	}
 
-	// Inject slide post ID for permalinks.
-	$block['innerContent'][0] = str_replace( '<section ', '<section id="slide-' . get_the_ID() . '" ', $block['innerContent'][0] );
-
-	// Reconstruct inner block content.
-	$innerContent = '';
-	foreach ( $block['innerBlocks'] as $inner ) {
-		if ( ! empty( $inner['innerHTML'] ) && is_string( $inner['innerHTML'] ) ) {
-			$innerContent .= $inner['innerHTML'];
-		}
-	}
-	$block['innerContent'][1] = $innerContent;
+	// Inject slide ID for permalinks.
+	$retval = str_replace( '<section ', '<section id="slide-' . get_the_ID() . '" ', $retval );
 
 	// Add speaker notes if available.
 	if ( ! empty( $block['attrs']['notes'] ) ) {
-		$block['innerContent'][1] .= sprintf( '<aside class="notes">%s</aside>', $block['attrs']['notes'] );
+		$notes = sprintf( '<aside class="notes">%s</aside>', $block['attrs']['notes'] );
+		$retval = str_replace( '</section>', $notes . '</section>', $retval );
 	}
 
-	return implode( '', $block['innerContent'] );
+	return $retval;
 }, 10, 2 );
