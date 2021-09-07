@@ -4,6 +4,10 @@
 	font-family: "Source Sans Pro", Helvetica, sans-serif;
 }
 
+#editor .reveal-theme-white {
+	font-family: "Source Sans Pro", Helvetica, sans-serif;
+}
+
 #editor .reveal-theme-night {
 	background-color: #111;
 	color: #eee;

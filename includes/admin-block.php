@@ -105,7 +105,7 @@ add_action( 'admin_enqueue_scripts', function() {
 		'wp-block-library-theme',
 		App\return_url( 'assets/common.css' ),
 		array(),
-		'20200710'
+		'20210907'
 	);
 
 	wp_enqueue_style( 'reveal.js', 'https://cdn.jsdelivr.net/npm/reveal.js@4.0.2/dist/reveal.css', array(), '4.0.2' );

@@ -15,9 +15,7 @@
 .wp-block-slide-slide pre,
 .wp-block-slide-slide .wp-block-code {
 	margin-top: 0;
-	/* Back compat */
-	margin-bottom: 0;
-	/* margin-bottom: .5em; */
+	margin-bottom: .5em;
 	margin-left: 0;
 	margin-right: 0;
 }
@@ -45,9 +43,8 @@
 	font-style: normal;
 	/* font-weight: normal; */
 	margin-top: 0;
-	/* Back compat */
 	margin-bottom: 0;
-	/* margin-bottom: .5em; */
+	margin-bottom: .5em;
 	margin-left: 0;
 	margin-right: 0;
 }

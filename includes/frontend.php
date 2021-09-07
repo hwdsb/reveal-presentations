@@ -77,7 +77,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style( 'reveal.js-reset', 'https://cdn.jsdelivr.net/npm/reveal.js@4.0.2/dist/reset.css', array(), '4.0.2' );
 	wp_enqueue_style( 'reveal.js', 'https://cdn.jsdelivr.net/npm/reveal.js@4.0.2/dist/reveal.css', array( 'reveal.js-reset' ), '4.0.2' );
 	wp_enqueue_style( 'reveal.js-theme', sprintf( 'https://cdn.jsdelivr.net/npm/reveal.js@4.0.2/dist/theme/%s.css', get_term_meta( get_queried_object_id(), '_presentation_theme', true ) ?: 'black' ), array( 'reveal.js' ), '4.0.2' );
-	wp_enqueue_style( 'reveal-common', App\return_url( 'assets/common.css' ), array( 'reveal.js-theme' ), '20200710' );
+	wp_enqueue_style( 'reveal-common', App\return_url( 'assets/common.css' ), array( 'reveal.js-theme' ), '20210907' );
 
 	if ( isset( $_GET['print-pdf'] ) ) {
 		wp_enqueue_style( 'reveal.js-pdf', 'https://cdn.jsdelivr.net/npm/reveal.js@3.9.2/css/print/pdf.css', array(), '4.0.2' );
