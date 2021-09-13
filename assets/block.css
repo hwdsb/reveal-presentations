@@ -129,8 +129,7 @@ div[data-type="slide/slide"] div[data-block] > .components-notice {
 }
 
 /* Hide appender displayed if a block or previous block is selected. */
-.block-editor-inner-blocks .block-editor-block-list__block.is-selected + .block-list-appender,
-.is-selected .block-editor-inner-blocks .block-editor-block-list__block + .block-list-appender {
+.block-editor-inner-blocks .block-editor-block-list__block.is-selected + .block-list-appender {
 	display: none;
 }
 
@@ -205,10 +204,6 @@ div[data-type="slide/slide"] div[data-block] > .components-notice {
 .wp-block-slide-slide__body + .components-base-control textarea {
 	line-height: 1.5;
 	font-size: 42px;
-}
-
-.block-list-appender {
-	display: none;
 }
 
 @media screen and (max-width: 1030px) {
