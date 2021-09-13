@@ -239,3 +239,16 @@ add_action( 'after_setup_theme', function() {
 		require_once return_path( 'includes/admin-taxonomy.php' );
 	}
 } );
+
+/**
+ * Remove core block patterns when on our post type page.
+ */
+add_filter( 'should_load_remote_block_patterns', function( $retval ) {
+	$screen = get_current_screen();
+
+	if ( get( 'post_type_slug' ) === $screen->post_type ) {
+		$retval = false;
+	}
+
+	return $retval;
+} );
