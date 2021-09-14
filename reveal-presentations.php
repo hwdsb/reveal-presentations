@@ -241,7 +241,7 @@ add_action( 'after_setup_theme', function() {
 } );
 
 /**
- * Remove core block patterns when on our post type page.
+ * Remove core block patterns when on our post type admin page.
  */
 add_filter( 'should_load_remote_block_patterns', function( $retval ) {
 	$screen = get_current_screen();
@@ -251,4 +251,15 @@ add_filter( 'should_load_remote_block_patterns', function( $retval ) {
 	}
 
 	return $retval;
+} );
+
+/**
+ * Register our block patterns only on our post type admin page.
+ */
+add_action( 'current_screen', function( $screen ) {
+	if ( ! function_exists( 'register_block_pattern' ) || ! $screen->is_block_editor || get( 'post_type_slug' ) !== $screen->post_type ) {
+		return;
+	}
+
+	require_once return_path( 'includes/admin-block-patterns.php' );
 } );
