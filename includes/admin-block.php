@@ -153,7 +153,9 @@ add_filter( "allowed_block_types{$all}", function( $retval ) {
 		'core/list',
 		'core/quote',
 		'core/code',
-		'core/media-text'
+		'core/media-text',
+		'core/columns',
+		'core/column'
 	];
 } );
 
