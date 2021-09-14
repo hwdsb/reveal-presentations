@@ -129,15 +129,23 @@ add_action( 'admin_enqueue_scripts', function() {
 	}
 }, 99999 );
 
+
+/*
+ * WP 5.8 deprecated 'block_editor_settings'.
+ *
+ * Remove this when we're not supporting older versions.
+ */
+$all = function_exists( '_wp_array_set' ) ? '_all' : '';
+
 /**
  * Wipe out inline styles.
  */
-add_filter( 'block_editor_settings', function( $settings ) {
+add_filter( "block_editor_settings{$all}", function( $settings ) {
 	$settings['styles'] = [];
 	return $settings;
 }, 99999 );
 
-add_filter( 'allowed_block_types', function( $retval ) {
+add_filter( "allowed_block_types{$all}", function( $retval ) {
 	return [
 		'core/paragraph',
 		'core/image',
