@@ -18,7 +18,7 @@ wp.domReady( function() {
 	 */
 	let blockLoadedInterval = setInterval( function() {
 		slide = jQuery( '.wp-block-slide-slide__body' );
-	    if ( slide.length ) {
+		if ( slide.length ) {
 			slide.addClass( 'reveal reveal-theme-' + currentTheme );
 
 			if ( 'rgba(0, 0, 0, 0)' === slide.css( 'backgroundColor' ) ) {
