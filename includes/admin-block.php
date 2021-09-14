@@ -60,7 +60,7 @@ add_action( 'admin_enqueue_scripts', function() {
 			'wp-compose',
 			'wp-hooks'
 		),
-		'20200914',
+		'20210913',
 		true
 	);
 

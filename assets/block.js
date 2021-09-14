@@ -1084,7 +1084,10 @@ registerBlockType('slide/slide', {
       }
     })), e('section', {
       className: className
-    }, e(InnerBlocks))), e(TextareaControl, {
+    }, e(InnerBlocks))),
+
+	/*
+    e(TextareaControl, {
       label: __('Speaker notes', 'slide'),
       value: attributes.notes,
       onChange: function onChange(notes) {
@@ -1093,7 +1096,10 @@ registerBlockType('slide/slide', {
         });
       },
       rows: 5
-    }));
+    })
+    */
+
+    );
   },
   save: function save(_ref3) {
     var attributes = _ref3.attributes;
