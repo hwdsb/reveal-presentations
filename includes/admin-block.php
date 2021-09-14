@@ -97,7 +97,7 @@ add_action( 'admin_enqueue_scripts', function() {
 		'slide',
 		App\return_url( 'assets/block.css' ),
 		array(),
-		'20200901'
+		'20210913'
 	);
 
 	wp_deregister_style( 'wp-block-library-theme' );
