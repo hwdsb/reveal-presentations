@@ -17,7 +17,7 @@ add_filter( 'rest_pre_insert_' . App\get( 'post_type_slug' ), function( $retval,
 	$json = $request->get_json_params();
 
 	// Add new slide to end of presentation on publish.
-	if ( 'publish' === $json['status'] ) {
+	if ( ! empty( $json['status'] ) && 'publish' === $json['status'] ) {
 		// Get our presentation term ID from update if possible.
 		$term_id = 0;
 		if ( ! empty( $json[ App\get( 'presentation_slug' ) . 's' ] ) ) {
