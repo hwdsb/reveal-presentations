@@ -37,6 +37,33 @@ if ( ! empty( $url['query'] ) ) {
 }
 
 /**
+ * Unregister all block patterns on our post type pages.
+ */
+add_action( 'init', function() use ( $url, $query ) {
+	$unregister = false;
+
+	// New slide.
+	if ( false !== strpos( $url['path'], '/wp-admin/post-new.php' ) &&
+		! empty( $query['post_type'] ) && App\get( 'post_type_slug' ) === $query['post_type'] ) {
+		$unregister = true;
+
+	// See if edited post is a slide.
+	} elseif ( false !== strpos( $url['path'], '/wp-admin/post.php' ) &&
+		! empty( $query['action'] ) && 'edit' === $query['action'] ) {
+		if ( App\get( 'post_type_slug' ) === get_post_type( (int) $query['post'] ) ) {
+			$unregister = true;
+		}
+	}
+
+	// Unregister time!
+	if ( true === $unregister && function_exists( 'unregister_block_pattern' ) ) {
+		foreach ( \WP_Block_Patterns_Registry::get_instance()->get_all_registered() as $pattern ) {
+			unregister_block_pattern( $pattern['name'] );
+		}
+	}
+}, 99 );
+
+/**
  * Admin taxonomy page loader.
  *
  * We use the Carbon Fields library to generate our taxonomy meta fields.
