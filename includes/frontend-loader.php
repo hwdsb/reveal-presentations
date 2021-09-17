@@ -18,7 +18,7 @@ add_action( 'pre_get_posts', function( $q ) {
 	$q->set( 'nopaging', true );
 
 	// Require frontend code.
-	require_once App\return_path( 'includes/frontend.php' );
+	require_once App\return_path( 'includes/frontend-presentation.php' );
 } );
 
 /**
