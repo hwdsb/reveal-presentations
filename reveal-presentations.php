@@ -148,14 +148,3 @@ add_action( 'init', function() {
         'type'         => 'string',
     ] );
 } );
-
-/**
- * REST API insert post mods.
- */
-add_filter( 'rest_dispatch_request', function( $retval, $request ) {
-	// Only load up our mods on our slides CPT endpoint.
-	if ( false !== strpos( $request->get_route(), '/' . get( 'post_type_slug' ) . '/' ) ) {
-		require_once return_path( 'includes/rest-pre-insert.php' );
-	}
-	return $retval;
-}, 10, 2 );
