@@ -54,6 +54,20 @@ function get( $param = '' ) {
 /** HOOKS */
 
 /**
+ * Conditional loader.
+ */
+add_action( 'after_setup_theme', function() {
+	// Admin.
+	if ( defined( 'WP_NETWORK_ADMIN' ) ) {
+		require_once return_path( 'includes/admin-loader.php' );
+
+	// Frontend.
+	} else {
+		require_once return_path( 'includes/frontend-loader.php' );
+	}
+} );
+
+/**
  * Register our post type and taxonomy.
  */
 add_action( 'init', function() {
@@ -136,66 +150,6 @@ add_action( 'init', function() {
 } );
 
 /**
- * Frontend loader.
- */
-add_action( 'pre_get_posts', function( $q ) {
-	// Bail if we're not on our taxonomy archive page.
-	if ( ! $q->is_main_query() || ! is_tax( get( 'presentation_slug' ) ) ) {
-		return;
-	}
-
-	// Set custom query args.
-	$q->set( 'orderby',  'menu_order' );
-	$q->set( 'order',    'ASC' );
-	$q->set( 'nopaging', true );
-
-	// Require frontend code.
-	require_once return_path( 'includes/frontend.php' );
-} );
-
-/**
- * Frontend: Redirect single slides to presentation permalink.
- */
-add_action( 'template_redirect', function() {
-	if ( ! is_singular( get( 'post_type_slug' ) ) ) {
-		return;
-	}
-
-	$term = (array) get_the_terms( get_the_ID(), get( 'presentation_slug' ) );
-	if ( ! empty( $term[0] ) && ! empty( $term[0]->slug ) ) {
-		$link = get_term_link( $term[0]->slug, get( 'presentation_slug' ) );
-		if ( ! empty( $_GET['print-pdf'] ) ) {
-			$link = add_query_arg( 'print-pdf', 1, $link );
-		} else {
-		 	$link .= '#/slide-' . get_the_ID();
-		}
-
-		wp_safe_redirect( $link );
-		die();
-	}
-} );
-
-/**
- * Admin block loader.
- */
-function admin_block() {
-	if ( get( 'post_type_slug' ) === get_current_screen()->post_type ) {
-		require_once return_path( 'includes/admin-block.php' );
-	}
-}
-add_action( 'load-post.php',     __NAMESPACE__ . '\\admin_block', 999 );
-add_action( 'load-post-new.php', __NAMESPACE__ . '\\admin_block', 999 );
-
-/**
- * Admin post column loader.
- */
-add_action( 'load-edit.php', function() {
-	if ( get( 'post_type_slug' ) === get_current_screen()->post_type ) {
-		require_once return_path( 'includes/admin-column.php' );
-	}
-}, 0 );
-
-/**
  * REST API insert post mods.
  */
 add_filter( 'rest_dispatch_request', function( $retval, $request ) {
@@ -205,61 +159,3 @@ add_filter( 'rest_dispatch_request', function( $retval, $request ) {
 	}
 	return $retval;
 }, 10, 2 );
-
-/**
- * Admin taxonomy page loader.
- *
- * We use the Carbon Fields library to generate our taxonomy meta fields.
- * Carbon Fields can only run before 'init', so we do our checks on
- * 'after_setup_theme' and manually parse the current URL.
- */
-add_action( 'after_setup_theme', function() {
-	// Bail if not admin area.
-	if ( ! defined( 'WP_NETWORK_ADMIN' ) ) {
-		return;
-	}
-
-	// Parse the current admin URL.
-	$url = parse_url( $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] );
-	if ( ! empty( $url['query'] ) ) {
-		parse_str( $url['query'], $query );
-	}
-
-	/**
-	 * Only register our taxonomy fields during POST submission or when we're
-	 * on our taxonomy page.
-	 */
-	if ( ( ! empty( $_POST ) && false !== strpos( $url['path'], '/wp-admin/edit-tags.php' ) && get( 'presentation_slug' ) === $_POST['taxonomy'] ) ||
-		( ! empty( $query['taxonomy'] ) && get( 'presentation_slug' ) === $query['taxonomy'] &&
-		! empty( $query['post_type'] ) && get( 'post_type_slug' ) === $query['post_type'] )
-	) {
-		require_once return_path( 'vendor/autoload.php' );
-		\Carbon_Fields\Carbon_Fields::boot();
-
-		require_once return_path( 'includes/admin-taxonomy.php' );
-	}
-} );
-
-/**
- * Remove core block patterns when on our post type admin page.
- */
-add_filter( 'should_load_remote_block_patterns', function( $retval ) {
-	$screen = get_current_screen();
-
-	if ( get( 'post_type_slug' ) === $screen->post_type ) {
-		$retval = false;
-	}
-
-	return $retval;
-} );
-
-/**
- * Register our block patterns only on our post type admin page.
- */
-add_action( 'current_screen', function( $screen ) {
-	if ( ! function_exists( 'register_block_pattern' ) || ! $screen->is_block_editor || get( 'post_type_slug' ) !== $screen->post_type ) {
-		return;
-	}
-
-	require_once return_path( 'includes/admin-block-patterns.php' );
-} );
