@@ -38,6 +38,9 @@ if ( ! empty( $url['query'] ) ) {
 
 /**
  * Unregister all block patterns on our post type pages.
+ *
+ * Requires manual URL parsing since if you attempt to unregister block
+ * patterns after 'init', this will cause problems.
  */
 add_action( 'init', function() use ( $url, $query ) {
 	$unregister = false;
