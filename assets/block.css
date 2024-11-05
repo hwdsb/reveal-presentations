@@ -128,12 +128,15 @@ div[data-type="slide/slide"] div[data-block] > .components-notice {
 }
 
 /* Hide post title */
-.editor-post-title .editor-post-title__input {
+.editor-post-title .editor-post-title__input,
+.editor-visual-editor__post-title-wrapper {
 	display: none;
 }
 
 /* Hide appender displayed after the slide */
-div[data-type="slide/slide"] + .block-list-appender {
+div[data-type="slide/slide"] + .block-list-appender,
+div[data-type="slide/slide"] + p[data-empty="true"],
+.is-root-container > p[data-empty="true"] {
 	display: none;
 }
 
