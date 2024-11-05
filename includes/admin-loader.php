@@ -14,10 +14,6 @@ add_action( 'current_screen', function( $screen ) {
 	// Admin post column loader.
 	if ( 'edit' === $screen->base ) {
 		require_once App\return_path( 'includes/admin-column.php' );
-
-	// Admin block loader.
-	} elseif ( 'post' === $screen->base ) {
-		require_once App\return_path( 'includes/admin-block.php' );
 	}
 
 	// Remove core block patterns.
@@ -26,6 +22,22 @@ add_action( 'current_screen', function( $screen ) {
 	// Register block patterns.
 	if ( function_exists( 'register_block_pattern' ) && $screen->is_block_editor ) {
 		require_once App\return_path( 'includes/admin-block-patterns.php' );
+	}
+}, 0 );
+
+/**
+ * Admin block loader.
+ */
+add_action( 'current_screen', function( $screen ) {
+	$load = App\get( 'post_type_slug' ) === $screen->post_type && 'post' === $screen->base;
+
+	// Allow block patterns to be made for our 'slide' post type.
+	if ( ! $load ) {
+		$load = 'site-editor' === $screen->base && ! empty( $_GET['postType'] ) && 'wp_block' === $_GET['postType'];
+	}
+
+	if ( $load ) {
+		require_once App\return_path( 'includes/admin-block.php' );
 	}
 }, 0 );
 
