@@ -161,8 +161,11 @@ add_filter( "allowed_block_types{$all}", function( $retval ) {
 
 add_filter( 'default_content', function( $post_content, $post ) {
 	// Allow slide template from block pattern.
-	if ( ! empty( $_GET['slide-template'] ) && check_admin_referer( 'reveal-slide-template-' . $_GET['slide-template'] ) ) {
-		return get_post_field( 'post_content', $_GET['slide-template'], 'raw' );
+	if ( ! empty( $_GET['slide-template'] ) ) {
+		$template = get_post_field( 'post_content', (int) $_GET['slide-template'], 'raw' );
+		if ( false !== strpos( $template, '<!-- wp:slide/slide ' ) ) {
+			return $template;
+		}
 	}
 
 	return file_get_contents( App\return_path( 'templates/default-content.html' ) );
